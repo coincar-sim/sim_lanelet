@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>sim_lanelet</name>
+  <version>1.0.0</version>
+  <description>Fork of Philipp Bender's libLanelet</description>
+
+  <license>contact-the-maintainer</license>
+  <maintainer email="maximilian.naumann@kit.edu">Maximilian Naumann</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>mrt_cmake_modules</build_depend>
+  <test_depend>gtest</test_depend>
+  <depend>boost</depend>
+  <depend>pugixml</depend>
+
+</package>

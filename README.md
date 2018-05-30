@@ -7,7 +7,7 @@ Map library for automated driving. Fork of [libLanelet](https://github.com/phben
 * see simulation_management_ros_tool for installation and more details
 
 ## Usage
-* Use this library in your software as in `sim_sample_planning_ros_tool`
+* Use this library in your software or use `util_lanelet`
 
 ## Map Generation
 * see https://github.com/phbender/liblanelet for details

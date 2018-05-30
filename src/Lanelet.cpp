@@ -64,7 +64,6 @@ void Lanelet::add_regulatory_element(const regulatory_element_ptr_t &elem)
 
 std::ostream &operator<<(std::ostream &out, const lanelet_ptr_t &lanelet)
 {
-    boost::format fmt("<Lanelet %i>");
-    out << (fmt % lanelet->id());
+    out << "<Lanelet " <<lanelet->id() << ">";
     return out;
 }

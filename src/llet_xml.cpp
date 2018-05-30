@@ -159,7 +159,9 @@ void XMLParser::parse_lanelets()
         for(std::string role : {"left", "right"})
         {
             std::vector< strip_ptr_t > line_strips_for_this_bound;
-            for( pugi::xpath_node member : relation.node().select_nodes((boost::format("member[@type='way' and @role='%s']") % role).str().c_str()) )
+            std::string selection_string = std::string("member[@type='way' and @role='" + role + "']");
+            auto nodes = relation.node().select_nodes(selection_string.c_str());
+            for( pugi::xpath_node member : nodes )
             {
                 int32_t id = member.node().attribute("ref").as_int();
                 line_strips_for_this_bound.push_back( linestrips_by_id[id] );
@@ -281,7 +283,7 @@ void XMLParser::parse_regulatory_elements_and_assign_to_lanelets()
 std::vector< lanelet_ptr_t > LLet::parse_xml(std::string filename)
 {
     pugi::xml_document doc;
-    pugi::xml_parse_result res = doc.load_file(filename.c_str());
+    doc.load_file(filename.c_str());
 
     XMLParser parser( doc );
 

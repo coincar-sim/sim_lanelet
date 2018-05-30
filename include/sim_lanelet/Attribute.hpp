@@ -61,8 +61,9 @@ struct AttributeValue
         catch(...)
         {
             // TODO: maybe catch more selectively ...
-            boost::format fmt("AttributeValue '%s' not convertible to double.");
-            throw std::runtime_error((fmt % value).str());
+            std::string err_msg =
+                    std::string("AttributeValue '") + value + std::string("' not convertible to double.");
+            throw std::runtime_error(err_msg);
         }
     }
 

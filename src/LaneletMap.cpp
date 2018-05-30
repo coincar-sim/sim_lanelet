@@ -61,7 +61,7 @@ std::vector<lanelet_ptr_t> LaneletMap::shortest_path(const lanelet_ptr_t &start,
 
     std::transform(sp->cbegin(), sp->cend(), sp_ll.begin(), [this](int32_t index){ return graph()[index].lanelet;});
 
-    std::cout << sp_ll << std::endl;
+    std::cout << &sp_ll << std::endl;
 
     return sp_ll;
 }
@@ -73,8 +73,7 @@ const lanelet_ptr_t &LaneletMap::lanelet_by_id(int32_t id) const
         return *pos;
     else
     {
-        boost::format fmt("trying to retieve lanelet with unknown id: %i");
-        throw std::runtime_error( (fmt % id).str() );
+        throw std::runtime_error( std::string("trying to retieve lanelet with unknown id: ") + std::to_string(id) );
     }
 }
 
@@ -85,13 +84,13 @@ const Graph &LaneletMap::graph() const
 
 void LaneletMap::init()
 {
-    for( int i = 0; i < _lanelets.size(); ++i )
+    for( size_t i = 0; i < _lanelets.size(); ++i )
     {
         Graph::vertex_descriptor vtx = boost::add_vertex(_graph);
         _graph[vtx].lanelet = _lanelets[i];
         // graph vertex descriptors and _lanelet indices should be in sync now.
         assert( vtx == i );
-        assert( vertex_id_by_lanelet(_lanelets[i]) == i );
+        assert( vertex_id_by_lanelet(_lanelets[i]) == int(i) );
         _lanelet_tree.insert(_lanelets[i]);
     }
 

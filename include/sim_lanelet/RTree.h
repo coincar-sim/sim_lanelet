@@ -973,7 +973,6 @@ bool RTREE_QUAL::InsertRectRec(const Branch& a_branch, Node* a_node, Node** a_ne
     {
       // Still above level for insertion, go down tree recursively
       Node* otherNode;
-      Branch branch;
 
       // find the optimal branch for this record
       int index = PickBranch(&a_branch.m_rect, a_node);
@@ -1412,8 +1411,7 @@ void RTREE_QUAL::LoadNodes(Node* a_nodeA, Node* a_nodeB, PartitionVars* a_parVar
       Node* targetNodes[] = {a_nodeA, a_nodeB};
 
       // It is assured that AddBranch here will not cause a node split.
-      bool nodeWasSplit = AddBranch(&a_parVars->m_branchBuf[index], targetNodes[targetNodeIndex], NULL);
-      ASSERT(!nodeWasSplit);
+      AddBranch(&a_parVars->m_branchBuf[index], targetNodes[targetNodeIndex], NULL);
     }
 }
 

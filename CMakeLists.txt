@@ -1,4 +1,4 @@
-#pkg_version=2.0
+set(MRT_PKG_VERSION 2.2.1)
 # Modify only if you know what you are doing!
 cmake_minimum_required(VERSION 2.8.12)
 project(sim_lanelet)
@@ -17,6 +17,10 @@ find_package(AutoDeps REQUIRED COMPONENTS ${DEPENDEND_PACKAGES})
 
 # Manually resolve removed dependend packages
 #find_package(...)
+
+# Mark files or folders for display in IDEs
+mrt_add_to_ide(README.md .gitlab-ci.yml)
+
 
 ########################
 ## add python modules ##
@@ -63,7 +67,7 @@ catkin_package(
 ###########
 # Add include and library directories
 include_directories(
-    include/${LIBRARY_NAME}
+    include/${PROJECT_NAME}
     ${mrt_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
     )
@@ -82,13 +86,14 @@ mrt_add_library(${PROJECT_NAME}
 ## Install ##
 #############
 # Install all targets, headers by default and scripts and other files if specified (folders or files)
-mrt_install(PROGRAMS scripts FILES launch rviz maps res data nodelet_plugins.xml plugin_description.xml)
+mrt_install(PROGRAMS scripts FILES res data)
 
 #############
 ## Testing ##
 #############
 # Add test targets for cpp and python tests
 if (CATKIN_ENABLE_TESTING)
+    add_definitions(-DRES_DIRECTORY=\"${CMAKE_CURRENT_SOURCE_DIR}/res/\")
     mrt_add_tests(test)
-    catkin_add_nosetests(test DEPENDENCIES ${${PROJECT_NAME}_EXPORTED_TARGETS})
+    mrt_add_nosetests(test)
 endif()

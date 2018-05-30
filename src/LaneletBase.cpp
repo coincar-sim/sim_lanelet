@@ -29,7 +29,7 @@ LaneletBase::LaneletBase()
 
 const point_with_id_t& LaneletBase::node_at(SIDE bound, int32_t n) const
 {
-    size_t L = nodes(bound).size();
+    int L = nodes(bound).size();
 
     int32_t index = n >= 0 ? n : L + n;
 
@@ -77,7 +77,7 @@ double LaneletBase::length() const
 {
     double res = 0;
     const auto& _nodes =  nodes(RIGHT);
-    for( int i = 1; i < _nodes.size(); ++i )
+    for( int i = 1; i < int(_nodes.size()); ++i )
     {
         res += dist(_nodes[i-1], _nodes[i]);
     }

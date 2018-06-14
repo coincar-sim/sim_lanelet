@@ -1,0 +1,4 @@
+# Source dependencies (provided for the travis ci build)
+- git:
+    local-name: mrt_cmake_modules
+    uri: https://github.com/KIT-MRT/mrt_cmake_modules.git

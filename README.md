@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/coincar-sim/sim_lanelet.svg)](https://travis-ci.org/coincar-sim/sim_lanelet)
+
 # sim_lanelet
 
 Map library for automated driving. Fork of [libLanelet](https://github.com/phbender/liblanelet).
